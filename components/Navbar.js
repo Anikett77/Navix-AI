@@ -16,7 +16,7 @@ const Navbar = () => {
       <h2 className='hover:text-orange-600 hover:scale-105 text-lg transition-all'>Contact</h2></a>
       </ul>
       <ul className='mt-2'>
-      <button className=' p-2 rounded-lg bg-orange-600 px-4'>Create New trip</button>
+      <a className=' p-2 rounded-lg bg-orange-600 px-4 cursor-pointer' href='/login'>Create New trip</a>
       <button className='rounded-4xl bg-orange-600 p-2.5 px-4 mx-3 '>A</button>
       </ul>
     </div>

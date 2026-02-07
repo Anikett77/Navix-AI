@@ -26,7 +26,7 @@ export default function Home() {
           {/* TEXTAREA */}
           <div className="relative p-4 w-[780px]">
             <textarea
-              className="mt-10 w-full h-40 px-5 pt-5 pr-14 pb-14 border border-amber-50 rounded-2xl resize-none bg-transparent text-white placeholder-white/50"
+              className="mt-10 w-full h-40 px-5 pt-5 pr-14 pb-14 border border-amber-50 rounded-2xl resize-none backdrop-blur-xs text-white placeholder-white/50"
               placeholder="Create a trip from Paris to New York"
             ></textarea>
 
