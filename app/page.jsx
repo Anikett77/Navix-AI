@@ -3,8 +3,10 @@ import Image from "next/image";
 import BackgroundSlider from "@/components/BackgroundSlider";
 import Featured from "@/components/Featured"
 import Cards from "@/components/Cards";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   return (
     <>
     <BackgroundSlider/>
@@ -25,7 +27,7 @@ export default function Home() {
 
           {/* TEXTAREA */}
           <div className="relative p-4 w-[780px]">
-            <textarea
+            <textarea onClick={() => router.push("/navix")}
               className="mt-10 w-full h-40 px-5 pt-5 pr-14 pb-14 border border-amber-50 rounded-2xl resize-none backdrop-blur-xs text-white placeholder-white/50"
               placeholder="Create a trip from Paris to New York"
             ></textarea>
@@ -37,16 +39,16 @@ export default function Home() {
 
           {/* QUICK ACTIONS */}
           <div className="flex gap-5 mt-4 flex-wrap">
-            <div className="p-2 rounded-3xl bg-black/40 hover:bg-orange-600 transition text-white flex gap-2 cursor-pointer">
+            <div onClick={() => router.push("/navix")} className="p-2 rounded-3xl bg-black/40 hover:bg-orange-600 transition text-white flex gap-2 cursor-pointer">
               <img src="/globe.svg" /> Create new trip
             </div>
-            <div className="p-2 rounded-3xl bg-black/40 hover:bg-orange-600 transition text-white flex gap-2 cursor-pointer">
+            <div onClick={() => router.push("/navix")} className="p-2 rounded-3xl bg-black/40 hover:bg-orange-600 transition text-white flex gap-2 cursor-pointer">
               <img src="/plane.svg" /> Inspire a location
             </div>
-            <div className="p-2 rounded-3xl bg-black/40 hover:bg-orange-600 transition text-white flex gap-2 cursor-pointer">
+            <div onClick={() => router.push("/navix")} className="p-2 rounded-3xl bg-black/40 hover:bg-orange-600 transition text-white flex gap-2 cursor-pointer">
               <img src="/gem.svg" /> Discover Hidden gems
             </div>
-            <div className="p-2 rounded-3xl bg-black/40 hover:bg-orange-600 transition text-white flex gap-2 cursor-pointer">
+            <div onClick={() => router.push("/navix")} className="p-2 rounded-3xl bg-black/40 hover:bg-orange-600 transition text-white flex gap-2 cursor-pointer">
               <img src="/globe.svg" /> Adventure Destination
             </div>
           </div>
