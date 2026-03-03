@@ -1,6 +1,8 @@
 # Next.js Authentication System 🚀
 
-mongouri = mongodb+srv://aniketchaturvedi83_db_user:ani@1234@navix.yh0yzzx.mongodb.net/?appName=Navix
+MONGODB_URI=mongodb+srv://aniketchaturvedi83_db_user:ani%401234@navix.yh0yzzx.mongodb.net/Navix
+OPENROUTER_API_KEY=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
+NEXT_PUBLIC_MAPTILER_KEY = zioNTKDHkolqin8fgpWk
 
 Industry-level authentication system with Next.js 14, MongoDB, NextAuth.js, and Google OAuth.
 

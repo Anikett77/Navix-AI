@@ -13,7 +13,7 @@ export default function MapComponent({ markers = [] }) {
   useEffect(() => {
     const map = new maplibregl.Map({
       container: mapContainer.current,
-      style: `https://api.maptiler.com/maps/hybrid-v4/style.json?key=zioNTKDHkolqin8fgpWk`,
+      style: `https://api.maptiler.com/maps/hybrid-v4/style.json?key=${process.env.NEXT_PUBLIC_MAPTILER_KEY}`,
       projection: "globe",
       center: [77.4126, 23.2599],
       zoom: 8,
