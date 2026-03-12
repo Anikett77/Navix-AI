@@ -304,114 +304,116 @@ export default function NavixPage() {
   const isChoiceWidget = ["groupSize", "budget", "days"].includes(activeUI);
 
   return (
-    <div className="h-screen flex items-center justify-center">
-      <div className="w-[70%] h-full">
+  <div className="flex flex-col md:flex-row md:h-screen md:items-center md:justify-center">
 
-        {!chatMode ? (
-          <div className="m-5 mt-10 w-[90%] border rounded-xl border-gray-300">
-            <h1 className="text-3xl font-bold flex justify-center mt-10">
-              Start Planning new Trip using AI
-            </h1>
-            <h2 className="text-gray-400 m-5 text-center">
-              Discover personalized travel itineraries, find the best destinations,
-              and plan your dream vacation effortlessly with the power of AI.
-            </h2>
-            {[
-              { icon: "/globe.svg", label: "Create New Trip" },
-              { icon: "/plane.svg", label: "Inspire me where to go" },
-              { icon: "/gem.svg",   label: "Discover Hidden gems" },
-              { icon: "/globe.svg", label: "Adventure Destination" },
-            ].map(({ icon, label }) => (
-              <div
-                key={label}
-                onClick={() => handleQuickStart(label)}
-                className="p-3.5 border border-gray-300 m-5 rounded-2xl font-normal flex gap-2.5 hover:border-amber-600 hover:text-orange-700 cursor-pointer"
-              >
-                <img src={icon} alt="" />{label}
-              </div>
-            ))}
-            <div className="relative p-4">
-              <textarea
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
-                className="border w-full h-36 px-5 pt-5 pr-14 pb-14 rounded-2xl"
-                placeholder="Start typing here..."
-              />
-              <button onClick={handleSend} className="absolute bottom-8 right-6 bg-orange-600 p-2 rounded-lg">
-                <img src="/x.svg" alt="send" />
-              </button>
+    {/* Chat panel */}
+    <div className="w-full md:w-[70%] md:h-full">
+
+      {!chatMode ? (
+        <div className="m-3 sm:m-5 mt-6 sm:mt-10 border rounded-xl border-gray-300">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold flex justify-center mt-6 sm:mt-10 text-center px-4">
+            Start Planning new Trip using AI
+          </h1>
+          <h2 className="text-gray-400 m-4 sm:m-5 text-center text-sm sm:text-base">
+            Discover personalized travel itineraries, find the best destinations,
+            and plan your dream vacation effortlessly with the power of AI.
+          </h2>
+
+          {[
+            { icon: "/globe.svg", label: "Create New Trip" },
+            { icon: "/plane.svg", label: "Inspire me where to go" },
+            { icon: "/gem.svg",   label: "Discover Hidden gems" },
+            { icon: "/globe.svg", label: "Adventure Destination" },
+          ].map(({ icon, label }) => (
+            <div
+              key={label}
+              onClick={() => handleQuickStart(label)}
+              className="p-3 sm:p-3.5 border border-gray-300 mx-3 sm:mx-5 my-2 sm:my-3 rounded-2xl font-normal flex gap-2.5 hover:border-amber-600 hover:text-orange-700 cursor-pointer text-sm sm:text-base items-center"
+            >
+              <img src={icon} alt="" className="w-5 h-5 flex-shrink-0" />
+              {label}
             </div>
+          ))}
+
+          <div className="relative p-3 sm:p-4">
+            <textarea
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
+              className="border w-full h-28 sm:h-36 px-4 sm:px-5 pt-4 sm:pt-5 pr-14 pb-12 rounded-2xl text-sm sm:text-base"
+              placeholder="Start typing here..."
+            />
+            <button onClick={handleSend} className="absolute bottom-6 sm:bottom-8 right-5 sm:right-6 bg-orange-600 p-2 rounded-lg">
+              <img src="/x.svg" alt="send" />
+            </button>
           </div>
+        </div>
 
-        ) : (
-          <div className="h-[95%] flex flex-col border rounded-xl border-gray-300 p-5 mt-4 ml-8">
-            {tripPlan ? (
-              <TripResult
-                tripPlan={tripPlan}
-                onReset={handleReset}
-                onDayChange={handleDayChange}
-              />
-            ) : (
-              <>
-                <div className="flex-1 overflow-y-auto space-y-4 pb-2 min-h-0">
-                  {messages.map((msg, i) => (
-                    <div
-                      key={i}
-                      className={`p-3 mx-2 rounded-xl max-w-[80%] ${
-                        msg.role === "user"
-                          ? "bg-orange-500 text-white ml-auto"
-                          : "bg-gray-200 text-black"
-                      }`}
-                    >
-                      {msg.content}
-                    </div>
-                  ))}
+      ) : (
+        <div className="h-[60vh] sm:h-[70vh] md:h-[95%] flex flex-col border rounded-xl border-gray-300 p-3 sm:p-5 mt-3 sm:mt-4 mx-3 sm:ml-8 sm:mr-0">
+          {tripPlan ? (
+            <TripResult tripPlan={tripPlan} onReset={handleReset} onDayChange={handleDayChange} />
+          ) : (
+            <>
+              <div className="flex-1 overflow-y-auto space-y-3 pb-2 min-h-0">
+                {messages.map((msg, i) => (
+                  <div
+                    key={i}
+                    className={`p-2.5 sm:p-3 mx-1 sm:mx-2 rounded-xl max-w-[85%] text-sm sm:text-base ${
+                      msg.role === "user"
+                        ? "bg-orange-500 text-white ml-auto"
+                        : "bg-gray-200 text-black"
+                    }`}
+                  >
+                    {msg.content}
+                  </div>
+                ))}
 
-                  {loading && (
-                    <div className="bg-gray-200 text-black p-3 mx-2 rounded-xl w-fit">
-                      <div className="flex space-x-2">
-                        <div className="w-2 h-2 bg-black rounded-full animate-bounce" />
-                        <div className="w-2 h-2 bg-black rounded-full animate-bounce delay-150" />
-                        <div className="w-2 h-2 bg-black rounded-full animate-bounce delay-300" />
-                      </div>
+                {loading && (
+                  <div className="bg-gray-200 text-black p-3 mx-2 rounded-xl w-fit">
+                    <div className="flex space-x-2">
+                      <div className="w-2 h-2 bg-black rounded-full animate-bounce" />
+                      <div className="w-2 h-2 bg-black rounded-full animate-bounce delay-150" />
+                      <div className="w-2 h-2 bg-black rounded-full animate-bounce delay-300" />
                     </div>
-                  )}
-                  <div ref={messagesEndRef} />
+                  </div>
+                )}
+                <div ref={messagesEndRef} />
+              </div>
+
+              {!loading && isChoiceWidget && (
+                <div className="mt-2 sm:mt-3 flex-shrink-0">
+                  {activeUI === "groupSize" && <GroupSizeUI onSelect={(v) => handleChoice("group", v)} />}
+                  {activeUI === "budget"    && <BudgetUI    onSelect={(v) => handleChoice("budget", v)} />}
+                  {activeUI === "days"      && <DaysUI      onSelect={(v) => handleChoice("days", v)} />}
                 </div>
+              )}
 
-                {!loading && isChoiceWidget && (
-                  <div className="mt-3 flex-shrink-0">
-                    {activeUI === "groupSize" && <GroupSizeUI onSelect={(v) => handleChoice("group", v)} />}
-                    {activeUI === "budget"    && <BudgetUI    onSelect={(v) => handleChoice("budget", v)} />}
-                    {activeUI === "days"      && <DaysUI      onSelect={(v) => handleChoice("days", v)} />}
-                  </div>
-                )}
-
-                {!isChoiceWidget && (
-                  <div className="relative mt-4 flex-shrink-0">
-                    <textarea
-                      value={input}
-                      onChange={(e) => setInput(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
-                      className="border w-full h-20 px-4 pt-3 pr-12 pb-3 rounded-xl resize-none"
-                      placeholder="Reply here..."
-                    />
-                    <button onClick={handleSend} className="absolute bottom-3 right-3 bg-orange-600 p-2 rounded-lg">
-                      <img src="/x.svg" alt="send" />
-                    </button>
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* ✅ Map receives live markers */}
-      <div className="w-full h-full px-5 pt-10">
-        <MapComponent markers={mapMarkers} />
-      </div>
+              {!isChoiceWidget && (
+                <div className="relative mt-3 sm:mt-4 flex-shrink-0">
+                  <textarea
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
+                    className="border w-full h-16 sm:h-20 px-3 sm:px-4 pt-2.5 sm:pt-3 pr-12 pb-3 rounded-xl resize-none text-sm sm:text-base"
+                    placeholder="Reply here..."
+                  />
+                  <button onClick={handleSend} className="absolute bottom-2.5 sm:bottom-3 right-2.5 sm:right-3 bg-orange-600 p-2 rounded-lg">
+                    <img src="/x.svg" alt="send" />
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      )}
     </div>
+
+    {/* Map */}
+    <div className="w-full h-[40vh] sm:h-[50vh] md:w-full md:h-full px-3 sm:px-5 pt-3 sm:pt-10 pb-3 md:pb-0">
+      <MapComponent markers={mapMarkers} />
+    </div>
+
+  </div>
   );
 }
