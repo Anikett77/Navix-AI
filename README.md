@@ -1,8 +1,5 @@
 # Next.js Authentication System 🚀
 
-MONGODB_URI=mongodb+srv://aniketchaturvedi83_db_user:ani%401234@navix.yh0yzzx.mongodb.net/Navix
-NEXT_PUBLIC_MAPTILER_KEY = zioNTKDHkolqin8fgpWk
-
 Industry-level authentication system with Next.js 14, MongoDB, NextAuth.js, and Google OAuth.
 
 ## Features ✨
